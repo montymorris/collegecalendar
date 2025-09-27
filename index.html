@@ -1,214 +1,196 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Subscription Calendar Viewer</title>
+  <style>
+    body {
+      background: #181a20;
+      color: #f2f2f2;
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1em;
+    }
+    .container {
+      width: 100%;
+      max-width: 430px;
+      background: #22252cdd;
+      margin-top: 2em;
+      padding: 1em;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px #0005;
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 1.2em;
+      color: #a9b9ff;
+      text-align: center;
+    }
+    .calendar {
+      width: 100%;
+      border-radius: 9px;
+      background: #23243b;
+      padding: 0.8em 0.2em 0.6em 0.2em;
+      box-sizing: border-box;
+    }
+    .agenda-day {
+      margin-bottom: 1.45em;
+    }
+    .agenda-day-header {
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #c9d4fa;
+      margin-bottom: 0.5em;
+      border-bottom: 1.5px solid #38409e;
+      letter-spacing: 0.01em;
+      padding-bottom: 0.12em;
+    }
+    .event-card {
+      position: relative;
+      margin-bottom: 0.8em;
+      background: #23243b;
+      border-radius: 8px;
+      box-shadow: 0 1.5px 6px #0002;
+      padding: 0.78em 0.8em 0.82em 0.7em;
+      border-left: 4px solid #e083e7;
+    }
+    .event-time {
+      font-size: 1.07em;
+      font-weight: 600;
+      color: #81cbf7;
+      margin-bottom: 0.2em;
+      letter-spacing: 0.015em;
+    }
+    .event-title {
+      color: #edb74d;
+      font-weight: 700;
+      font-size: 1em;
+      line-height: 1.25;
+      margin-bottom: 0.12em;
+    }
+    .event-detail {
+      font-size: 0.97em;
+      color: #e8eafc;
+      margin-bottom: 0.1em;
+    }
+    .event-detail strong {
+      color: #98afff;
+    }
+    @media (max-width: 430px) {
+      .container { max-width: 99vw; }
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Subscription Calendar Viewer&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #181a20;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #f2f2f2;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: system-ui, sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>min-height: 100vh;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>flex-direction: column;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 1em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.container {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: 430px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #22252cdd;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 2em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 1em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 12px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 2px 8px #0005;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>h1 {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-top: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.2em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #a9b9ff;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>text-align: center;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.calendar {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 9px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #23243b;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.8em 0.2em 0.6em 0.2em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-sizing: border-box;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.agenda-day {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 1.45em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.agenda-day-header {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: bold;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.1em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #c9d4fa;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.5em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-bottom: 1.5px solid #38409e;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 0.01em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding-bottom: 0.12em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.event-card {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.8em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #23243b;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-radius: 8px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>box-shadow: 0 1.5px 6px #0002;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0.78em 0.8em 0.82em 0.7em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-left: 4px solid #e083e7;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.event-time {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1.07em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 600;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #81cbf7;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.2em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>letter-spacing: 0.015em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.event-title {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #edb74d;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 1em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>line-height: 1.25;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.12em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.event-detail {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.97em;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #e8eafc;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-bottom: 0.1em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.event-detail strong {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: #98afff;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>@media (max-width: 430px) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>.container { max-width: 99vw; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="container"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;Subscription Calendar (Dark)&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="calendar" class="calendar"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;small style="color: #888;"&gt;Events loaded from RWCMD Calendar&lt;/small&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const CALENDAR_URL = "https://rwcmd.asimut.net/api/ical.php?token=FposT5KcfVwdi39w";</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function parseICS(data) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const events = [];</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const regex = /BEGIN:VEVENT([\s\S]*?)END:VEVENT/g;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>let match;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>while ((match = regex.exec(data)) !== null) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const section = match[1];</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const getField = (k) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const r = new RegExp(`${k}:(.*)`);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const m = section.match(r);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>return m ? m[1].trim().replace(/\\n/g, '&lt;br&gt;') : "";</p>
-<p class="p1"><span class="Apple-converted-space">        </span>};</p>
-<p class="p1"><span class="Apple-converted-space">        </span>events.push({</p>
-<p class="p1"><span class="Apple-converted-space">          </span>summary: getField("SUMMARY"),</p>
-<p class="p1"><span class="Apple-converted-space">          </span>description: getField("DESCRIPTION"),</p>
-<p class="p1"><span class="Apple-converted-space">          </span>start: getField("DTSTART"),</p>
-<p class="p1"><span class="Apple-converted-space">          </span>end: getField("DTEND"),</p>
-<p class="p1"><span class="Apple-converted-space">          </span>location: getField("LOCATION"),</p>
-<p class="p1"><span class="Apple-converted-space">          </span>organiser: getField("ORGANIZER"),</p>
-<p class="p1"><span class="Apple-converted-space">          </span>attendees: getField("ATTENDEE")</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>return events;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function icsDateToObj(dateString) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (!dateString) return null;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (!dateString.includes("T")) {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const y = dateString.slice(0, 4), m = dateString.slice(4, 6), d = dateString.slice(6, 8);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>return new Date(`${y}-${m}-${d}T00:00:00`);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>let ds = dateString.replace(/Z$/, "");</p>
-<p class="p1"><span class="Apple-converted-space">          </span>let year = ds.substring(0, 4), month = ds.substring(4, 6), day = ds.substring(6, 8),</p>
-<p class="p1"><span class="Apple-converted-space">            </span>hour = ds.substring(9, 11), min = ds.substring(11, 13);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>return new Date(Date.UTC(year, month-1, day, hour, min));</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>} catch { return null; }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function icsDateToTime(start, end) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const opts = { hour: "2-digit", minute: "2-digit" };</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const s = icsDateToObj(start), e = icsDateToObj(end);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (!s) return "";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (end &amp;&amp; e) return `${s.toLocaleTimeString([], opts)} - ${e.toLocaleTimeString([], opts)}`;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>return s.toLocaleTimeString([], opts);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function formatDayHeader(dateObj) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>if (!dateObj) return "";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const options = { weekday: "long", day: "numeric", month: "long", year: "numeric" };</p>
-<p class="p1"><span class="Apple-converted-space">      </span>return dateObj.toLocaleDateString(undefined, options);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>async function loadICal() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const calDiv = document.getElementById("calendar");</p>
-<p class="p1"><span class="Apple-converted-space">      </span>calDiv.innerHTML = "Loading...";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>try {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(CALENDAR_URL);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let res = await fetch(proxyUrl);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (!res.ok) throw Error("Network error.");</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let data = await res.text();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let events = parseICS(data);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const now = new Date();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>events = events</p>
-<p class="p1"><span class="Apple-converted-space">          </span>.filter(ev =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>const d = icsDateToObj(ev.start);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>return d &amp;&amp; d &gt;= now;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>})</p>
-<p class="p1"><span class="Apple-converted-space">          </span>.sort((a, b) =&gt; (a.start &gt; b.start ? 1 : -1));</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const grouped = events.reduce((acc, ev) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const d = icsDateToObj(ev.start);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>if (!d) return acc;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const ymd = d.toISOString().slice(0, 10);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>if (!acc[ymd]) acc[ymd] = [];</p>
-<p class="p1"><span class="Apple-converted-space">          </span>acc[ymd].push(ev);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>return acc;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}, {});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>let html = "";</p>
-<p class="p1"><span class="Apple-converted-space">        </span>for (const day in grouped) {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>const dateObj = new Date(day + "T00:00:00");</p>
-<p class="p1"><span class="Apple-converted-space">          </span>html += `&lt;div class="agenda-day"&gt;&lt;div class="agenda-day-header"&gt;${formatDayHeader(dateObj)}&lt;/div&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>grouped[day].forEach(ev =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>html += `&lt;div class="event-card"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="event-time"&gt;${icsDateToTime(ev.start, ev.end)}&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="event-title"&gt;${ev.summary || "Untitled Event"}&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>${ev.location ? `&lt;div class="event-detail"&gt;&lt;strong&gt;Location:&lt;/strong&gt; ${ev.location}&lt;/div&gt;` : ""}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>${ev.description ? `&lt;div class="event-detail"&gt;${ev.description}&lt;/div&gt;` : ""}</p>
-<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>});</p>
-<p class="p1"><span class="Apple-converted-space">          </span>html += `&lt;/div&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>calDiv.innerHTML = html || "&lt;p&gt;No upcoming events found in the feed.&lt;/p&gt;";</p>
-<p class="p1"><span class="Apple-converted-space">      </span>} catch {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>calDiv.innerHTML = `&lt;span style="color:#e66465;"&gt;Failed to load calendar. Check the URL and availability.&lt;/span&gt;`;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>window.onload = () =&gt; loadICal();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <div class="container">
+    <h1>Subscription Calendar (Dark)</h1>
+    <div id="calendar" class="calendar"></div>
+    <small style="color: #888;">Events loaded from RWCMD Calendar</small>
+  </div>
+  <script>
+    const CALENDAR_URL = "https://rwcmd.asimut.net/api/ical.php?token=FposT5KcfVwdi39w";
+
+    function parseICS(data) {
+      const events = [];
+      const regex = /BEGIN:VEVENT([\s\S]*?)END:VEVENT/g;
+      let match;
+      while ((match = regex.exec(data)) !== null) {
+        const section = match[1];
+        const getField = (k) => {
+          const r = new RegExp(`${k}:(.*)`);
+          const m = section.match(r);
+          return m ? m[1].trim().replace(/\\n/g, '<br>') : "";
+        };
+        events.push({
+          summary: getField("SUMMARY"),
+          description: getField("DESCRIPTION"),
+          start: getField("DTSTART"),
+          end: getField("DTEND"),
+          location: getField("LOCATION")
+        });
+      }
+      return events;
+    }
+
+    function icsDateToObj(dateString) {
+      if (!dateString) return null;
+      try {
+        if (!dateString.includes("T")) {
+          const y = dateString.slice(0, 4), m = dateString.slice(4, 6), d = dateString.slice(6, 8);
+          return new Date(`${y}-${m}-${d}T00:00:00`);
+        } else {
+          let ds = dateString.replace(/Z$/, "");
+          let year = ds.substring(0, 4), month = ds.substring(4, 6), day = ds.substring(6, 8),
+            hour = ds.substring(9, 11), min = ds.substring(11, 13);
+          return new Date(Date.UTC(year, month - 1, day, hour, min));
+        }
+      } catch { return null; }
+    }
+
+    function icsDateToTime(start, end) {
+      const opts = { hour: "2-digit", minute: "2-digit" };
+      const s = icsDateToObj(start), e = icsDateToObj(end);
+      if (!s) return "";
+      if (end && e) return `${s.toLocaleTimeString([], opts)} - ${e.toLocaleTimeString([], opts)}`;
+      return s.toLocaleTimeString([], opts);
+    }
+
+    function formatDayHeader(dateObj) {
+      if (!dateObj) return "";
+      const options = { weekday: "long", day: "numeric", month: "long", year: "numeric" };
+      return dateObj.toLocaleDateString(undefined, options);
+    }
+
+    async function loadICal() {
+      const calDiv = document.getElementById("calendar");
+      calDiv.innerHTML = "Loading...";
+      try {
+        let proxyUrl = "https://corsproxy.io/?" + encodeURIComponent(CALENDAR_URL);
+        let res = await fetch(proxyUrl);
+        if (!res.ok) throw Error("Network error.");
+        let data = await res.text();
+        let events = parseICS(data);
+        const now = new Date();
+        events = events
+          .filter(ev => {
+            const d = icsDateToObj(ev.start);
+            return d && d >= now;
+          })
+          .sort((a, b) => (a.start > b.start ? 1 : -1));
+        const grouped = events.reduce((acc, ev) => {
+          const d = icsDateToObj(ev.start);
+          if (!d) return acc;
+          const ymd = d.toISOString().slice(0, 10);
+          if (!acc[ymd]) acc[ymd] = [];
+          acc[ymd].push(ev);
+          return acc;
+        }, {});
+        let html = "";
+        for (const day in grouped) {
+          const dateObj = new Date(day + "T00:00:00");
+          html += `<div class="agenda-day"><div class="agenda-day-header">${formatDayHeader(dateObj)}</div>`;
+          grouped[day].forEach(ev => {
+            html += `<div class="event-card">
+                <div class="event-time">${icsDateToTime(ev.start, ev.end)}</div>
+                <div class="event-title">${ev.summary || "Untitled Event"}</div>
+                ${ev.location ? `<div class="event-detail"><strong>Location:</strong> ${ev.location}</div>` : ""}
+                ${ev.description ? `<div class="event-detail">${ev.description}</div>` : ""}
+              </div>`;
+          });
+          html += `</div>`;
+        }
+        calDiv.innerHTML = html || "<p>No upcoming events found in the feed.</p>";
+      } catch {
+        calDiv.innerHTML = `<span style="color:#e66465;">Failed to load calendar. Check the URL and availability.</span>`;
+      }
+    }
+
+    window.onload = () => loadICal();
+  </script>
 </body>
 </html>
